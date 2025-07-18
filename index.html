@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Streamr&nbsp;– Netflix Clone</title>
+
+    <!-- Fonts & Tailwind -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link rel="preload" as="style"
+          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
+          onload="this.rel='stylesheet'"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Custom Design Tokens -->
+    <style type="text/tailwindcss">
+        :root {
+            --primary-color: #e50914;
+            --background-color: #141414;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --accent-color: #e50914;
+            --card-background: #2f2f2f;
+            --carousel-title: #e5e5e5;
+        }
+        body        { @apply font-sans bg-[var(--background-color)] text-[var(--text-primary)] rounded-md; }
+        .nav_logo   { @apply text-3xl font-bold text-[var(--primary-color)]; }
+        .nav_link   { @apply text-[var(--text-primary)] hover:text-[var(--accent-color)]; }
+        .button_primary   { @apply bg-white text-black py-2 px-6 rounded-md hover:bg-gray-300; }
+        .button_secondary { @apply bg-gray-700 text-white py-2 px-6 rounded-md hover:bg-gray-600; }
+        .carousel_title   { @apply text-2xl font-semibold mb-4 text-[var(--carousel-title)]; }
+        .footer_link      { @apply hover:underline; }
+    </style>
+</head>
+
+<body class="bg-[var(--background-color)]">
+<div class="relative flex size-full min-h-screen flex-col overflow-x-hidden">
+
+    <!-- ░░ Header ░░ -->
+    <header
+        class="flex items-center justify-between whitespace-nowrap px-10 py-4 z-10 absolute w-full bg-gradient-to-b from-black/70 to-transparent">
+        <div class="flex items-center gap-6">
+            <h1 class="nav_logo">STREAMR</h1>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-5">
+                <a href="#" class="nav_link text-sm font-medium">Home</a>
+                <a href="#" class="nav_link text-sm font-medium">Series</a>
+                <a href="#" class="nav_link text-sm font-medium">Movies</a>
+                <a href="#" class="nav_link text-sm font-medium">New &amp; Popular</a>
+                <a href="#" class="nav_link text-sm font-medium">My List</a>
+            </nav>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <!-- Search Icon -->
+            <svg class="h-6 w-6 text-white cursor-pointer"
+                 xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                 viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+
+            <!-- Avatar -->
+            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-md size-8"
+                 style="background-image:url('assets/images/avatar.png');"></div>
+        </div>
+    </header>
+
+    <!-- ░░ Main ░░ -->
+    <main class="flex-grow">
+
+        <!-- Hero Banner -->
+        <section class="relative h-[56.25vw] min-h-[400px] max-h-[800px] w-full">
+            <!-- Background -->
+            <div class="absolute inset-0 bg-cover bg-center"
+                 style="background-image:url('assets/images/hero.png');">
+                <div class="absolute inset-0 bg-gradient-to-t from-[var(--background-color)] via-transparent to-black/60"></div>
+            </div>
+
+            <!-- Text Overlay -->
+            <div class="relative z-10 flex flex-col justify-end h-full px-10 pb-20 text-white">
+                <h2 class="text-5xl font-extrabold mb-4">The Midnight Horizon</h2>
+                <p class="max-w-xl mb-6">
+                    A lone astronaut on a perilous mission to the edge of the solar system
+                    discovers a truth that will change humanity forever.
+                </p>
+                <div class="flex space-x-4">
+                    <button class="button_primary flex items-center gap-2">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg"
+                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2" d="M5 3l14 9-14 9V3z"/>
+                        </svg>
+                        Play
+                    </button>
+                    <button class="button_secondary flex items-center gap-2">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg"
+                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        More&nbsp;Info
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Carousels -->
+        <div class="px-10 pb-16 -mt-20 relative z-10">
+
+            <!-- Trending Now -->
+            <section class="mb-8">
+                <h3 class="carousel_title">Trending Now</h3>
+
+                <div class="flex overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -mx-2">
+                    <div class="flex items-stretch gap-3 px-2">
+
+                        <!-- Card 1 -->
+                        <div class="flex-shrink-0 w-[240px] group">
+                            <div class="w-full bg-center bg-no-repeat aspect-[16/9] bg-cover rounded-md
+                                        transition-transform duration-300 group-hover:scale-105"
+                                 style="background-image:url('assets/images/trending1.png');"></div>
+                            <p class="text-white text-base font-medium mt-2 opacity-0 group-hover:opacity-100
+                                      transition-opacity">The Silent Echo</p>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="flex-shrink-0 w-[240px] group">
+                            <div class="w-full bg-center bg-no-repeat aspect-[16/9] bg-cover rounded-md
+                                        transition-transform duration-300 group-hover:scale-105"
+                                 style="background-image:url('assets/images/trending2.png');"></div>
+                            <p class="text-white text-base font-medium mt-2 opacity-0 group-hover:opacity-100
+                                      transition-opacity">Crimson Tide</p>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="flex-shrink-0 w-[240px] group">
+                            <div class="w-full bg-center bg-no-repeat aspect-[16/9] bg-cover rounded-md
+                                        transition-transform duration-300 group-hover:scale-105"
+                                 style="background-image:url('assets/images/trending3.png');"></div>
+                            <p class="text-white text-base font-medium mt-2 opacity-0 group-hover:opacity-100
+                                      transition-opacity">Whispers&nbsp;of&nbsp;the&nbsp;Past</p>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="flex-shrink-0 w-[240px] group">
+                            <div class="w-full bg-center bg-no-repeat aspect-[16/9] bg-cover rounded-md
+                                        transition-transform duration-300 group-hover:scale-105"
+                                 style="background-image:url('assets/images/trending4.png');"></div>
+                            <p class="text-white text-base font-medium mt-2 opacity-0 group-hover:opacity-100
+                                      transition-opacity">Shadows&nbsp;of&nbsp;Deception</p>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div class="flex-shrink-0 w-[240px] group">
+                            <div class="w-full bg-center bg-no-repeat aspect-[16/9] bg-cover rounded-md
+                                        transition-transform duration-300 group-hover:scale-105"
+                                 style="background-image:url('assets/images/trending5.png');"></div>
+                            <p class="text-white text-base font-medium mt-2 opacity-0 group-hover:opacity-100
+                                      transition-opacity">Eternal Flame</p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Popular on Streamr -->
+            <section class="mb-8">
+                <h3 class="carousel_title">Popular on Streamr</h3>
+
+                <div class="flex overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -mx-2">
+                    <div class="flex items-stretch gap-3 px-2">
+
+                        <!-- Card 1 -->
+                        <div class="flex-shrink-0 w-[240px] group">
+                            <div class="w-full bg-center bg-no-repeat aspect-[16/9] bg-cover rounded-md
+                                        transition-transform duration-300 group-hover:scale-105"
+                                 style="background-image:url('assets/images/popular1.png');"></div>
+                            <p class="text-white text-base font-medium mt-2 opacity-0 group-hover:opacity-100
+                                      transition-opacity">The Silent Echo</p>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="flex-shrink-0 w-[240px] group">
+                            <div class="w-full bg-center bg-no-repeat aspect-[16/9] bg-cover rounded-md
+                                        transition-transform duration-300 group-hover:scale-105"
+                                 style="background-image:url('assets/images/popular2.png');"></div>
+                            <p class="text-white text-base font-medium mt-2 opacity-0 group-hover:opacity-100
+                                      transition-opacity">Crimson Tide</p>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="flex-shrink-0 w-[240px] group">
+                            <div class="w-full bg-center bg-no-repeat aspect-[16/9] bg-cover rounded-md
+                                        transition-transform duration-300 group-hover:scale-105"
+                                 style="background-image:url('assets/images/popular3.png');"></div>
+                            <p class="text-white text-base font-medium mt-2 opacity-0 group-hover:opacity-100
+                                      transition-opacity">Whispers&nbsp;of&nbsp;the&nbsp;Past</p>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="flex-shrink-0 w-[240px] group">
+                            <div class="w-full bg-center bg-no-repeat aspect-[16/9] bg-cover rounded-md
+                                        transition-transform duration-300 group-hover:scale-105"
+                                 style="background-image:url('assets/images/popular4.png');"></div>
+                            <p class="text-white text-base font-medium mt-2 opacity-0 group-hover:opacity-100
+                                      transition-opacity">Shadows&nbsp;of&nbsp;Deception</p>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div class="flex-shrink-0 w-[240px] group">
+                            <div class="w-full bg-center bg-no-repeat aspect-[16/9] bg-cover rounded-md
+                                        transition-transform duration-300 group-hover:scale-105"
+                                 style="background-image:url('assets/images/popular5.png');"></div>
+                            <p class="text-white text-base font-medium mt-2 opacity-0 group-hover:opacity-100
+                                      transition-opacity">Eternal Flame</p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ░░ Footer ░░ -->
+    <footer class="bg-transparent text-[var(--text-secondary)] py-8 px-10">
+        <div class="max-w-screen-lg mx-auto">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+                <a href="#" class="footer_link text-sm">FAQ</a>
+                <a href="#" class="footer_link text-sm">Help Center</a>
+                <a href="#" class="footer_link text-sm">Account</a>
+                <a href="#" class="footer_link text-sm">Media Center</a>
+                <a href="#" class="footer_link text-sm">Investor Relations</a>
+                <a href="#" class="footer_link text-sm">Jobs</a>
+                <a href="#" class="footer_link text-sm">Ways to Watch</a>
+                <a href="#" class="footer_link text-sm">Terms of Use</a>
+                <a href="#" class="footer_link text-sm">Privacy</a>
+                <a href="#" class="footer_link text-sm">Cookie Preferences</a>
+                <a href="#" class="footer_link text-sm">Corporate Information</a>
+                <a href="#" class="footer_link text-sm">Contact Us</a>
+            </div>
+            <p class="text-xs">© 2025 Streamr, Inc.</p>
+        </div>
+    </footer>
+
+</div>
+</body>
+</html>
